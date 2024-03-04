@@ -17,7 +17,12 @@ public class DashboardMainController {
     }
 
     @FXML
-    private void switchToAddNewUser() throws IOException {
-        App.setRoot(View.ADDEMPLOYEE.toPath());
+    private void switchToDashboardExpenses() throws IOException {
+
+    }
+
+    @FXML
+    private void switchToDashboardIncome() {
+
     }
 }
