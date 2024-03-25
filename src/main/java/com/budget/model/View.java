@@ -5,11 +5,14 @@ package com.budget.model;
  */
 
 public enum View {
-    UPDATEEMPLOYEE("employee/updateEmployee"),
-    DASHBOARDMAIN("main/dashboardMain"),
-    DASHBOARDEMPLOYEE("employee/dashboardEmployee"),
+    ADD_EMPLOYEE("employee/addEmployee"),
+    ADD_OR_UPDATE_EXPENSES("expenses/addOrUpdateExpenses"),
+    DASHBOARD_EMPLOYEE("employee/dashboardEmployee"),
+    DASHBOARD_EXPENSES("expenses/dashboardExpenses"),
 
-    ADDEMPLOYEE("employee/addEmployee");
+    DASHBOARD_MAIN("main/dashboardMain"),
+
+    UPDATE_EMPLOYEE("employee/updateEmployee");
 
     private final String view;
 

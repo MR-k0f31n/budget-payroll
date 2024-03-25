@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="531.0" xmlns="http://javafx.com/javafx/17.0.10" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.budget.controllers.service.ExpensesServiceController">
+    <children>
+        <VBox layoutX="14.0" layoutY="69.0" prefHeight="327.0" prefWidth="507.0">
+            <children>
+                <HBox prefHeight="57.0" prefWidth="507.0">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="55.0" prefWidth="135.0"
+                               text="СУММА:">
+                            <font>
+                                <Font name="Impact" size="18.0"/>
+                            </font>
+                            <opaqueInsets>
+                                <Insets left="20.0"/>
+                            </opaqueInsets>
+                        </Label>
+                        <TextField fx:id="expensesSum" alignment="CENTER" prefHeight="56.0" prefWidth="290.0"
+                                   promptText="СУММА 0.01">
+                            <padding>
+                                <Insets left="5.0"/>
+                            </padding>
+                            <HBox.margin>
+                                <Insets left="5.0"/>
+                            </HBox.margin>
+                            <font>
+                                <Font name="Impact" size="12.0"/>
+                            </font>
+                        </TextField>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </HBox>
+                <HBox prefHeight="57.0" prefWidth="507.0">
+                    <children>
+                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="132.0" text="КОММЕНТАРИЙ:">
+                            <font>
+                                <Font name="Impact" size="18.0"/>
+                            </font>
+                            <opaqueInsets>
+                                <Insets left="20.0"/>
+                            </opaqueInsets>
+                        </Label>
+                        <TextField fx:id="expensesDescription" alignment="CENTER" prefHeight="56.0" prefWidth="290.0"
+                                   promptText="КОММЕНТАРИЙ">
+                            <padding>
+                                <Insets left="5.0"/>
+                            </padding>
+                            <HBox.margin>
+                                <Insets left="5.0"/>
+                            </HBox.margin>
+                            <font>
+                                <Font name="Impact" size="12.0"/>
+                            </font>
+                        </TextField>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </HBox>
+                <HBox prefHeight="57.0" prefWidth="507.0">
+                    <children>
+                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="132.0" text="НА ЧТО УШЛИ $:">
+                            <font>
+                                <Font name="Impact" size="18.0"/>
+                            </font>
+                            <opaqueInsets>
+                                <Insets left="20.0"/>
+                            </opaqueInsets>
+                        </Label>
+                        <ComboBox fx:id="expensesItem" prefHeight="34.0" prefWidth="290.0"
+                                  promptText="ВЫБЕРИТЕ ЧТО НИБУДЬ">
+                            <HBox.margin>
+                                <Insets left="5.0" top="15.0"/>
+                            </HBox.margin>
+                            <padding>
+                                <Insets left="50.0"/>
+                            </padding>
+                        </ComboBox>
+                    </children>
+                </HBox>
+                <HBox id="incomeNumberView" fx:id="incomeNumberView" prefHeight="57.0" prefWidth="507.0"
+                      visible="false">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="55.0" prefWidth="132.0"
+                               text="НОМЕР ЗАКАЗА \ НАКЛАДНОЙ:" textAlignment="CENTER" wrapText="true">
+                            <font>
+                                <Font name="Impact" size="18.0"/>
+                            </font>
+                            <opaqueInsets>
+                                <Insets left="20.0"/>
+                            </opaqueInsets>
+                        </Label>
+                        <TextField fx:id="incomeNumber" alignment="CENTER" prefHeight="56.0" prefWidth="290.0"
+                                   promptText="НОМЕР НАКЛАНОЙ">
+                            <padding>
+                                <Insets left="5.0"/>
+                            </padding>
+                            <HBox.margin>
+                                <Insets left="5.0"/>
+                            </HBox.margin>
+                            <font>
+                                <Font name="Impact" size="12.0"/>
+                            </font>
+                        </TextField>
+                    </children>
+                </HBox>
+                <HBox id="incomeDateView" fx:id="incomeDateView" prefHeight="57.0" prefWidth="507.0" visible="false">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="55.0" prefWidth="132.0"
+                               text="ДАТА НАКЛАДНОЙ" textAlignment="CENTER" wrapText="true">
+                            <font>
+                                <Font name="Impact" size="18.0"/>
+                            </font>
+                            <opaqueInsets>
+                                <Insets left="20.0"/>
+                            </opaqueInsets>
+                        </Label>
+                        <DatePicker fx:id="incomeDate" prefHeight="40.0" prefWidth="290.0">
+                            <opaqueInsets>
+                                <Insets/>
+                            </opaqueInsets>
+                            <HBox.margin>
+                                <Insets left="5.0" top="10.0"/>
+                            </HBox.margin>
+                        </DatePicker>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+        <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="507.0"
+               text="Добавить расход" textAlignment="CENTER">
+            <font>
+                <Font name="Impact" size="18.0"/>
+            </font>
+        </Label>
+        <AnchorPane layoutX="14.0" layoutY="396.0" prefHeight="50.0" prefWidth="507.0"/>
+        <HBox layoutX="14.0" layoutY="446.0" prefHeight="57.0" prefWidth="507.0">
+            <children>
+                <DatePicker prefHeight="34.0" prefWidth="150.0" promptText="Дата расхода" fx:id="expensesDate">
+                    <HBox.margin>
+                        <Insets left="5.0" top="10.0"/>
+                    </HBox.margin>
+                </DatePicker>
+                <AnchorPane prefHeight="57.0" prefWidth="81.0"/>
+                <Button fx:id="saveButton" visible="false" alignment="CENTER" mnemonicParsing="false" onAction="#saveOrUpdateExpenses"
+                        text="СОХРАНИТЬ" textFill="#528a56">
+                    <HBox.margin>
+                        <Insets top="10.0"/>
+                    </HBox.margin>
+                    <font>
+                        <Font name="Impact" size="18.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="cancelButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                        onAction="#cancel" text="ОТМЕНА">
+                    <font>
+                        <Font name="Impact" size="18.0"/>
+                    </font>
+                    <HBox.margin>
+                        <Insets left="10.0" top="10.0"/>
+                    </HBox.margin>
+                </Button>
+            </children>
+        </HBox>
+        <Label fx:id="critacalMessage" alignment="CENTER" layoutX="14.0" layoutY="503.0" prefHeight="50.0"
+               prefWidth="507.0" text="CRITICAL MESSAGE" textFill="RED" visible="false">
+            <font>
+                <Font name="Impact" size="18.0"/>
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

@@ -22,4 +22,7 @@ public class Expenses {
     private LocalDate date;
     private Double sum;
     private String description;
+    private ExpensesItem item;
+    private String incomeNumber;
+    private LocalDate incomeDate;
 }

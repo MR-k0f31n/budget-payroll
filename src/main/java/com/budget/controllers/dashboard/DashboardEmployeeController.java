@@ -110,7 +110,7 @@ public class DashboardEmployeeController {
     private void updateItem() {
         if (employeeTableView.getSelectionModel().getSelectedItem() != null) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(View.UPDATEEMPLOYEE.toPath()));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(View.UPDATE_EMPLOYEE.toPath()));
                 Parent root = loader.load();
                 UpdateEmployeeController updateController = loader.getController();
                 updateController.init(employeeTableView.getSelectionModel().getSelectedItem());
@@ -125,12 +125,12 @@ public class DashboardEmployeeController {
 
     @FXML
     private void returnToMainDashboard() throws IOException {
-        App.setRoot(View.DASHBOARDMAIN.toPath());
+        App.setRoot(View.DASHBOARD_MAIN.toPath());
     }
 
     @FXML
     private void switchToAddNewEmployee() throws IOException {
-        App.setRoot(View.ADDEMPLOYEE.toPath());
+        App.setRoot(View.ADD_EMPLOYEE.toPath());
     }
 
     @FXML

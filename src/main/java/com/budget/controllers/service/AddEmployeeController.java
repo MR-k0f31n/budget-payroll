@@ -67,7 +67,7 @@ public class AddEmployeeController {
         if (getDateBirthDay != null) newEmployee.setBirthDay(getDateBirthDay);
         try {
             repository.addOrUpdateEmployee(newEmployee);
-            App.setRoot(View.DASHBOARDEMPLOYEE.toPath());
+            App.setRoot(View.DASHBOARD_EMPLOYEE.toPath());
             if (criticalError.isVisible()) criticalError.setVisible(false);
         } catch (Exception e) {
             criticalError.setText(e.getMessage());
@@ -77,7 +77,7 @@ public class AddEmployeeController {
 
     @FXML
     private void returnToEmployeeDashboard() throws IOException {
-        App.setRoot(View.DASHBOARDEMPLOYEE.toPath());
+        App.setRoot(View.DASHBOARD_EMPLOYEE.toPath());
     }
 
     @FXML
