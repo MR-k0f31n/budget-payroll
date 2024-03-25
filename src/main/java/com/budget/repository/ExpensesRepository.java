@@ -1,6 +1,5 @@
 package com.budget.repository;
 
-import com.budget.model.Employee;
 import com.budget.model.Expenses;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
