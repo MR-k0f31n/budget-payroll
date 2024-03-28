@@ -12,50 +12,44 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-            prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.10" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.budget.controllers.dashboard.DashboardExpensesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.budget.controllers.dashboard.DashboardExpensesController">
     <children>
         <VBox layoutX="14.0" layoutY="14.0" prefHeight="502.0" prefWidth="135.0">
             <children>
-                <Button mnemonicParsing="false" onAction="#switchToAddExpenses" prefHeight="43.0" prefWidth="111.0"
-                        text="ДОБАВИТЬ">
+                <Button mnemonicParsing="false" onAction="#switchToAddExpenses" prefHeight="43.0" prefWidth="111.0" text="ДОБАВИТЬ">
                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="20.0"/>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
                     </VBox.margin>
                     <font>
-                        <Font name="Impact" size="18.0"/>
+                        <Font name="Impact" size="18.0" />
                     </font>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#updateExpenses" prefHeight="43.0" prefWidth="111.0"
-                        text="ИЗМЕНИТЬ">
+                <Button mnemonicParsing="false" onAction="#updateExpenses" prefHeight="43.0" prefWidth="111.0" text="ИЗМЕНИТЬ">
                     <font>
-                        <Font name="Impact" size="18.0"/>
+                        <Font name="Impact" size="18.0" />
                     </font>
                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0"/>
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
                     </VBox.margin>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#deleteExpenses" prefHeight="43.0" prefWidth="111.0"
-                        text="УДАЛИТЬ">
+                <Button mnemonicParsing="false" onAction="#deleteExpenses" prefHeight="43.0" prefWidth="111.0" text="УДАЛИТЬ">
                     <font>
-                        <Font name="Impact" size="18.0"/>
+                        <Font name="Impact" size="18.0" />
                     </font>
                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0"/>
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
                     </VBox.margin>
                 </Button>
             </children>
         </VBox>
         <VBox layoutX="14.0" layoutY="516.0" prefHeight="75.0" prefWidth="135.0">
             <children>
-                <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToMainBoard" prefHeight="41.0"
-                        prefWidth="108.0" text="НАЗАД">
+                <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToMainBoard" prefHeight="41.0" prefWidth="108.0" text="НАЗАД">
                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="15.0"/>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="15.0" />
                     </VBox.margin>
                     <font>
-                        <Font name="Impact" size="18.0"/>
+                        <Font name="Impact" size="18.0" />
                     </font>
                 </Button>
             </children>
@@ -64,52 +58,50 @@
             <children>
                 <Label alignment="CENTER" prefHeight="28.0" prefWidth="737.0" text="Панель расходов">
                     <font>
-                        <Font name="Impact" size="20.0"/>
+                        <Font name="Impact" size="20.0" />
                     </font>
                 </Label>
-                <AnchorPane prefHeight="10.0" prefWidth="737.0"/>
+                <AnchorPane prefHeight="10.0" prefWidth="737.0" />
                 <HBox prefHeight="33.0" prefWidth="737.0">
                     <children>
                         <Label prefHeight="33.0" prefWidth="115.0" text="Фильтр по дате:">
                             <font>
-                                <Font name="Impact" size="15.0"/>
+                                <Font name="Impact" size="15.0" />
                             </font>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="33.0" prefWidth="65.0"
-                               text="Начало">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="33.0" prefWidth="65.0" text="Начало">
                             <font>
-                                <Font name="Impact" size="12.0"/>
+                                <Font name="Impact" size="12.0" />
                             </font>
                         </Label>
-                        <DatePicker fx:id="filterDateStart" prefHeight="34.0" prefWidth="174.0" promptText="С"/>
+                        <DatePicker fx:id="filterDateStart" prefHeight="34.0" prefWidth="174.0" promptText="С" />
                         <Label alignment="CENTER" prefHeight="33.0" prefWidth="60.0" text="Конец">
                             <font>
-                                <Font name="Impact" size="12.0"/>
+                                <Font name="Impact" size="12.0" />
                             </font>
                         </Label>
-                        <DatePicker fx:id="filterDateEnd" prefHeight="36.0" prefWidth="174.0" promptText="ПО"/>
+                        <DatePicker fx:id="filterDateEnd" prefHeight="36.0" prefWidth="174.0" promptText="ПО" />
                     </children>
                 </HBox>
                 <HBox prefHeight="44.0" prefWidth="737.0">
                     <children>
                         <Label prefHeight="33.0" prefWidth="179.0" text="Фильтр по описанию:">
                             <font>
-                                <Font name="Impact" size="15.0"/>
+                                <Font name="Impact" size="15.0" />
                             </font>
                             <HBox.margin>
-                                <Insets top="5.0"/>
+                                <Insets top="5.0" />
                             </HBox.margin>
                         </Label>
-                        <TextField fx:id="filterOnDescription" prefHeight="33.0" prefWidth="410.0"
-                                   promptText="описание">
+                        <TextField fx:id="filterOnDescription" prefHeight="33.0" prefWidth="410.0" promptText="описание">
                             <opaqueInsets>
-                                <Insets top="5.0"/>
+                                <Insets top="5.0" />
                             </opaqueInsets>
                             <HBox.margin>
-                                <Insets top="5.0"/>
+                                <Insets top="5.0" />
                             </HBox.margin>
                             <font>
-                                <Font name="Impact" size="12.0"/>
+                                <Font name="Impact" size="12.0" />
                             </font>
                         </TextField>
                     </children>
@@ -118,42 +110,43 @@
                     <children>
                         <Label prefHeight="33.0" prefWidth="179.0" text="Фильтр по сумме:">
                             <font>
-                                <Font name="Impact" size="15.0"/>
+                                <Font name="Impact" size="15.0" />
                             </font>
                             <HBox.margin>
-                                <Insets top="5.0"/>
+                                <Insets top="5.0" />
                             </HBox.margin>
                         </Label>
                         <TextField fx:id="filterOnSum" prefHeight="33.0" prefWidth="410.0" promptText="СУММА">
                             <opaqueInsets>
-                                <Insets top="5.0"/>
+                                <Insets top="5.0" />
                             </opaqueInsets>
                             <HBox.margin>
-                                <Insets top="5.0"/>
+                                <Insets top="5.0" />
                             </HBox.margin>
                             <font>
-                                <Font name="Impact" size="12.0"/>
+                                <Font name="Impact" size="12.0" />
                             </font>
                         </TextField>
                     </children>
                 </HBox>
                 <TableView fx:id="tableExpenses" prefHeight="346.0" prefWidth="737.0">
                     <columns>
-                        <TableColumn fx:id="tableColumnDateExpenses" prefWidth="133.0" text="Дата"/>
-                        <TableColumn fx:id="tableColumnSum" prefWidth="136.0" text="СУММА"/>
-                        <TableColumn fx:id="tableColumnDescription" prefWidth="300.0" text="Описание"/>
-                        <TableColumn fx:id="tableColumnItem" prefWidth="167.0" text="Статья"/>
+                        <TableColumn fx:id="tableColumnDateExpenses" prefWidth="87.0" text="Дата" />
+                        <TableColumn fx:id="tableColumnSum" prefWidth="166.0" text="СУММА" />
+                        <TableColumn fx:id="tableColumnDescription" prefWidth="256.0" text="Описание" />
+                        <TableColumn fx:id="tableColumnItem" prefWidth="115.0" text="Статья" />
+                  <TableColumn fx:id="tableColumnIncomeNumber" prefWidth="87.0" text="Заказ" />
+                  <TableColumn fx:id="tableColumnIncomeDate" prefWidth="67.0" text="Дата" />
                     </columns>
                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                     </columnResizePolicy>
                 </TableView>
             </children>
         </VBox>
-        <Label fx:id="criticalMessage" alignment="CENTER" layoutX="149.0" layoutY="537.0" prefHeight="33.0"
-               prefWidth="737.0" text="CRITICAL MESSAGE" textFill="#d00b0b" visible="false">
+        <Label fx:id="criticalMessage" alignment="CENTER" layoutX="149.0" layoutY="537.0" prefHeight="33.0" prefWidth="737.0" text="CRITICAL MESSAGE" textFill="#d00b0b" visible="false">
             <font>
-                <Font name="Impact" size="18.0"/>
+                <Font name="Impact" size="18.0" />
             </font>
         </Label>
     </children>

@@ -3,6 +3,7 @@ package com.budget.controllers.dashboard;
 import com.budget.App;
 import com.budget.controllers.service.ExpensesServiceController;
 import com.budget.model.Expenses;
+import com.budget.model.ExpensesItem;
 import com.budget.model.View;
 import com.budget.repository.ExpensesRepository;
 import javafx.collections.FXCollections;
@@ -38,7 +39,11 @@ public class DashboardExpensesController {
     @FXML
     private TableColumn<Expenses, String> tableColumnDescription;
     @FXML
-    private TableColumn<Expenses, String> tableColumnItem;
+    private TableColumn<Expenses, ExpensesItem> tableColumnItem;
+    @FXML
+    private TableColumn<Expenses, String> tableColumnIncomeNumber;
+    @FXML
+    private TableColumn<Expenses, LocalDate> tableColumnIncomeDate;
     @FXML
     private DatePicker filterDateStart;
     @FXML
@@ -51,7 +56,6 @@ public class DashboardExpensesController {
 
     @FXML
     private void initialize() {
-        LocalDate dateNow = LocalDate.now();
         fillTable();
     }
 
@@ -60,6 +64,8 @@ public class DashboardExpensesController {
         tableColumnDateExpenses.setCellValueFactory(new PropertyValueFactory<>("date"));
         tableColumnDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         tableColumnItem.setCellValueFactory(new PropertyValueFactory<>("item"));
+        tableColumnIncomeNumber.setCellValueFactory(new PropertyValueFactory<>("incomeNumber"));
+        tableColumnIncomeDate.setCellValueFactory(new PropertyValueFactory<>("incomeDate"));
         tableExpenses.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         setTable();
     }

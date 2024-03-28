@@ -7,11 +7,13 @@ import lombok.Getter;
  */
 @Getter
 public enum ExpensesItem {
-    OTHER("Другое"),
-    SPARE_PARTS("Запасные части"),
-    SALARY("Зарплата"),
-    GUARANTEE("Гарантия"),
-    THIRD_PARTY_WORK("Работа других сервисов");
+    OTHER("ДРУГОЕ"),
+    SPARE_PARTS("ЗАПАСНЫЕ ЧАСТИ"),
+    SALARY("ЗАРПЛАТА"),
+    GUARANTEE("ГАРАНТИЯ"),
+    BANK("КРЕДИТЫ/ДОЛГИ"),
+    TRANSFERS("ПЕРЕВОДЫ"),
+    THIRD_PARTY_WORK("РАБОТА ДРУГИХ СЕРВИСОВ");
 
     private final String expensesItem;
 
