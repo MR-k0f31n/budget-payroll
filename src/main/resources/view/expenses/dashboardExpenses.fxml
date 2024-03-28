@@ -131,12 +131,12 @@
                 </HBox>
                 <TableView fx:id="tableExpenses" prefHeight="346.0" prefWidth="737.0">
                     <columns>
-                        <TableColumn fx:id="tableColumnDateExpenses" prefWidth="87.0" text="Дата" />
-                        <TableColumn fx:id="tableColumnSum" prefWidth="166.0" text="СУММА" />
-                        <TableColumn fx:id="tableColumnDescription" prefWidth="256.0" text="Описание" />
-                        <TableColumn fx:id="tableColumnItem" prefWidth="115.0" text="Статья" />
-                  <TableColumn fx:id="tableColumnIncomeNumber" prefWidth="87.0" text="Заказ" />
-                  <TableColumn fx:id="tableColumnIncomeDate" prefWidth="67.0" text="Дата" />
+                        <TableColumn fx:id="tableColumnDateExpenses" prefWidth="67.0" text="Дата" />
+                        <TableColumn fx:id="tableColumnSum" prefWidth="160.0" text="СУММА" />
+                        <TableColumn fx:id="tableColumnDescription" prefWidth="244.0" text="Описание" />
+                        <TableColumn fx:id="tableColumnItem" prefWidth="87.0" text="Статья" />
+                  <TableColumn fx:id="tableColumnIncomeNumber" prefWidth="89.0" text="Заказ" />
+                  <TableColumn fx:id="tableColumnIncomeDate" prefWidth="84.0" text="Дата" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

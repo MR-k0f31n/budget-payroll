@@ -1,7 +1,7 @@
 package com.budget.controllers.dashboard;
 
 import com.budget.App;
-import com.budget.controllers.service.UpdateEmployeeController;
+import com.budget.controllers.service.EmployeeController;
 import com.budget.model.Employee;
 import com.budget.model.View;
 import com.budget.repository.EmployeeRepository;
@@ -107,19 +107,30 @@ public class DashboardEmployeeController {
     }
 
     @FXML
-    private void updateItem() {
+    private void updateEmployee() {
         if (employeeTableView.getSelectionModel().getSelectedItem() != null) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(View.UPDATE_EMPLOYEE.toPath()));
-                Parent root = loader.load();
-                UpdateEmployeeController updateController = loader.getController();
-                updateController.init(employeeTableView.getSelectionModel().getSelectedItem());
-                stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
+            openNewWindow(employeeTableView.getSelectionModel().getSelectedItem());
+        }
+    }
+
+    private void openNewWindow(Employee employee) {
+        try {
+            FXMLLoader loader;
+            if (employee != null) {
+                loader = new FXMLLoader(getClass().getResource(View.UPDATE_EMPLOYEE.toPath()));
+            } else {
+                loader = new FXMLLoader(getClass().getResource(View.ADD_EMPLOYEE.toPath()));
             }
+            Parent root = loader.load();
+            EmployeeController controller = loader.getController();
+            if (employee != null) {
+                controller.init(employee);
+            }
+            stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -130,7 +141,7 @@ public class DashboardEmployeeController {
 
     @FXML
     private void switchToAddNewEmployee() throws IOException {
-        App.setRoot(View.ADD_EMPLOYEE.toPath());
+        openNewWindow(null);
     }
 
     @FXML

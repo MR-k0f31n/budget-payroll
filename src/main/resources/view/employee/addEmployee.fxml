@@ -8,7 +8,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.budget.controllers.service.AddEmployeeController">
+            fx:controller="com.budget.controllers.service.EmployeeController">
     <children>
         <VBox prefHeight="400.0" prefWidth="600.0">
             <children>
@@ -115,7 +115,7 @@
                 <HBox prefHeight="41.0" prefWidth="600.0">
                     <children>
                         <AnchorPane prefHeight="69.0" prefWidth="338.0"/>
-                        <Button id="buttonSave" fx:id="buttonSave" mnemonicParsing="false" onAction="#saveNewEmployee"
+                        <Button id="buttonSave" fx:id="buttonSave" mnemonicParsing="false" onAction="#updateEmployee"
                                 prefHeight="31.0" prefWidth="82.0" text="Сохранить" textFill="#1f4bc4" visible="false">
                             <font>
                                 <Font name="Segoe UI Bold" size="12.0"/>
