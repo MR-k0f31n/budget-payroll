@@ -116,7 +116,7 @@ public class UpdateEmployeeController extends AddEmployeeController {
         if (!newEmployee.equals(employeeBeforeUpdate)) {
             repository.addOrUpdateEmployee(newEmployee);
             DashboardEmployeeController.closeScene();
-            App.setRoot(View.DASHBOARDEMPLOYEE.toPath());
+            App.setRoot(View.DASHBOARD_EMPLOYEE.toPath());
         }
     }
 

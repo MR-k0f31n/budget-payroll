@@ -13,16 +13,15 @@ public class DashboardMainController {
 
     @FXML
     private void switchToDashboardEmployee() throws IOException {
-        App.setRoot(View.DASHBOARDEMPLOYEE.toPath());
+        App.setRoot(View.DASHBOARD_EMPLOYEE.toPath());
     }
 
     @FXML
     private void switchToDashboardExpenses() throws IOException {
-
+        App.setRoot(View.DASHBOARD_EXPENSES.toPath());
     }
 
     @FXML
     private void switchToDashboardIncome() {
-
     }
 }

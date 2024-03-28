@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 /**
@@ -19,7 +18,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML(View.DASHBOARDMAIN.toPath()), 900, 600);
+        scene = new Scene(loadFXML(View.DASHBOARD_MAIN.toPath()), 900, 600);
         stage.setTitle("Budget and Payroll");
         stage.setScene(scene);
         stage.show();
