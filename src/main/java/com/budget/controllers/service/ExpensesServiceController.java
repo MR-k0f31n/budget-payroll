@@ -170,13 +170,17 @@ public class ExpensesServiceController {
         if (item == ExpensesItem.SPARE_PARTS) {
             labelIncomeNumberField.setVisible(true);
             incomeNumberField.setVisible(true);
+            incomeNumber = incomeNumberField.getText();
             labelIncomeDateField.setVisible(true);
             incomeDateField.setVisible(true);
+            incomeDate = incomeDateField.getValue();
         } else {
             labelIncomeNumberField.setVisible(false);
             incomeNumberField.setVisible(false);
+            incomeNumber = null;
             labelIncomeDateField.setVisible(false);
             incomeDateField.setVisible(false);
+            incomeDate = null;
         }
     }
 
