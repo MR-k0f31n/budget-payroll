@@ -42,6 +42,8 @@ public class ExpensesServiceController {
     private Label labelIncomeDateField;
     @FXML
     private Label labelIncomeNumberField;
+    @FXML
+    private Label descriptionExpenseBeforeDeletion;
 
     private final ExpensesRepository expensesRepository = new ExpensesRepository();
 
@@ -209,5 +211,19 @@ public class ExpensesServiceController {
     @FXML
     private void cancel() {
         DashboardExpensesController.closeScene();
+    }
+
+    @FXML
+    private void deleteButton() {
+
+    }
+
+    @FXML
+    private void cancelDeleteButton() {
+
+    }
+
+    public void initBeforeDeletion() {
+        String setLabel = "Расход от {} ";
     }
 }
