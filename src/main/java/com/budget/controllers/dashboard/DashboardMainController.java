@@ -1,6 +1,7 @@
 package com.budget.controllers.dashboard;
 
-import com.budget.model.View;
+import com.budget.model.view.ViewEmployee;
+import com.budget.model.view.ViewExpense;
 import javafx.fxml.FXML;
 import com.budget.App;
 
@@ -13,12 +14,12 @@ public class DashboardMainController {
 
     @FXML
     private void switchToDashboardEmployee() throws IOException {
-        App.setRoot(View.DASHBOARD_EMPLOYEE.toPath());
+        App.setRoot(ViewEmployee.DASHBOARD_EMPLOYEE.toPath());
     }
 
     @FXML
     private void switchToDashboardExpenses() throws IOException {
-        App.setRoot(View.DASHBOARD_EXPENSES.toPath());
+        App.setRoot(ViewExpense.DASHBOARD_EXPENSES.toPath());
     }
 
     @FXML

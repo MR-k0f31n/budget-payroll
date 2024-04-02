@@ -4,14 +4,17 @@ import com.budget.App;
 import com.budget.controllers.dashboard.DashboardExpensesController;
 import com.budget.model.Expenses;
 import com.budget.model.ExpensesItem;
-import com.budget.model.View;
+import com.budget.model.view.ViewExpense;
 import com.budget.repository.ExpensesRepository;
 import com.budget.util.ExpenseItemStringConverter;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.io.IOException;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author MR.k0F31n
@@ -104,7 +107,7 @@ public class ExpensesServiceController {
         newExpense.setId(idExpense);
         try {
             expensesRepository.AddOrUpdateExpense(newExpense);
-            App.setRoot(View.DASHBOARD_EXPENSES.toPath());
+            App.setRoot(ViewExpense.DASHBOARD_EXPENSES.toPath());
             DashboardExpensesController.closeScene();
         } catch (Exception e) {
             criticalMessageShow();
@@ -214,16 +217,18 @@ public class ExpensesServiceController {
     }
 
     @FXML
-    private void deleteButton() {
-
+    private void deleteButton() throws IOException {
+        expensesRepository.deleteExpense(idExpense);
+        App.setRoot(ViewExpense.DASHBOARD_EXPENSES.toPath());
+        DashboardExpensesController.closeScene();
     }
 
-    @FXML
-    private void cancelDeleteButton() {
-
-    }
-
-    public void initBeforeDeletion() {
-        String setLabel = "Расход от {} ";
+    public void initBeforeDeletion(LocalDate date, Double sum, String description, Long id) {
+        idExpense = id;
+        String formatDate = date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+        String formatSum = decimalFormat.format(sum);
+        String setLabel = String.format("Расход от %s сумма %s описание: %s", formatDate, formatSum, description);
+        descriptionExpenseBeforeDeletion.setText(setLabel);
     }
 }

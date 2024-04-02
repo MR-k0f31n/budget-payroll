@@ -4,7 +4,8 @@ import com.budget.App;
 import com.budget.controllers.service.ExpensesServiceController;
 import com.budget.model.Expenses;
 import com.budget.model.ExpensesItem;
-import com.budget.model.View;
+import com.budget.model.view.ViewExpense;
+import com.budget.model.view.ViewMain;
 import com.budget.repository.ExpensesRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +22,7 @@ import javafx.scene.control.TableView;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author MR.k0F31n
@@ -78,26 +80,30 @@ public class DashboardExpensesController {
 
     @FXML
     private void switchToAddExpenses() {
-        loadNewWindow(null);
+        loadNewWindow(null, ViewExpense.ADD_OR_UPDATE_EXPENSES.toPath());
     }
 
     @FXML
     private void updateExpenses() {
         if (tableExpenses.getSelectionModel().getSelectedItem() != null) {
-            loadNewWindow(tableExpenses.getSelectionModel().getSelectedItem());
+            loadNewWindow(tableExpenses.getSelectionModel().getSelectedItem(), ViewExpense.ADD_OR_UPDATE_EXPENSES.toPath());
         }
     }
 
-    private void loadNewWindow(Expenses expenses) {
+    private void loadNewWindow(Expenses expenses, String path) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(View.ADD_OR_UPDATE_EXPENSES.toPath()));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
             Parent root = loader.load();
             ExpensesServiceController controller = loader.getController();
 
-            if (expenses != null) {
-                controller.init(expenses);
-            } else {
-                controller.initDate();
+            if (path.equals(ViewExpense.ADD_OR_UPDATE_EXPENSES.toPath())) {
+                if (expenses != null) {
+                    controller.init(expenses);
+                } else {
+                    controller.initDate();
+                }
+            } else if (path.equals(ViewExpense.DELETE_EXPENSE.toPath())) {
+                controller.initBeforeDeletion(expenses.getDate(), expenses.getSum(), expenses.getDescription(), expenses.getId());
             }
 
             stage = new Stage();
@@ -111,13 +117,13 @@ public class DashboardExpensesController {
     @FXML
     private void deleteExpenses() {
         if (tableExpenses.getSelectionModel().getSelectedItem() != null) {
-            loadNewWindow(tableExpenses.getSelectionModel().getSelectedItem());
+            loadNewWindow(tableExpenses.getSelectionModel().getSelectedItem(), ViewExpense.DELETE_EXPENSE.toPath());
         }
     }
 
     @FXML
     private void switchToMainBoard() throws IOException {
-        App.setRoot(View.DASHBOARD_MAIN.toPath());
+        App.setRoot(ViewMain.DASHBOARD_MAIN.toPath());
     }
 
     public static void closeScene() {

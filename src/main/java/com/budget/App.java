@@ -1,6 +1,6 @@
 package com.budget;
 
-import com.budget.model.View;
+import com.budget.model.view.ViewMain;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,7 +18,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML(View.DASHBOARD_MAIN.toPath()), 900, 600);
+        scene = new Scene(loadFXML(ViewMain.DASHBOARD_MAIN.toPath()), 900, 600);
         stage.setTitle("Budget and Payroll");
         stage.setScene(scene);
         stage.show();

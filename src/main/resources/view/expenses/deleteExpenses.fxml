@@ -57,7 +57,7 @@
                             </font>
                         </Button>
                         <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="74.0" text="ОТМЕНА"
-                                textFill="#178dd7" onAction="#cancelDeleteButton">
+                                textFill="#178dd7" onAction="#cancel">
                             <font>
                                 <Font name="Impact" size="16.0"/>
                             </font>

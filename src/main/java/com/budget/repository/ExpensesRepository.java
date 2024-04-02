@@ -17,11 +17,13 @@ public class ExpensesRepository {
     private final SessionFactory sessionFactory = configuration.buildSessionFactory();
 
     public void AddOrUpdateExpense(Expenses expenses) {
-        try (Session session = sessionFactory.openSession()) {
-            Transaction tx = session.beginTransaction();
-            session.saveOrUpdate(expenses);
-            tx.commit();
-            session.close();
+        if (expenses != null) {
+            try (Session session = sessionFactory.openSession()) {
+                Transaction tx = session.beginTransaction();
+                session.saveOrUpdate(expenses);
+                tx.commit();
+                session.close();
+            }
         }
     }
 
@@ -34,5 +36,19 @@ public class ExpensesRepository {
             e.printStackTrace();
         }
         return expensesList;
+    }
+
+    public void deleteExpense(Long id) {
+            try (Session session = sessionFactory.openSession()) {
+                Transaction tx = session.beginTransaction();
+                Expenses expenses = session.get(Expenses.class, id);
+                if (expenses != null) {
+                    session.delete(expenses);
+                    tx.commit();
+                } else {
+                    System.out.printf("Обьект с ID %s не найден%n", id);
+                }
+                session.close();
+            }
     }
 }
