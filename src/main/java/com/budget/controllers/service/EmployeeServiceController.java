@@ -4,7 +4,7 @@ package com.budget.controllers.service;
 import com.budget.App;
 import com.budget.controllers.dashboard.DashboardEmployeeController;
 import com.budget.model.Employee;
-import com.budget.model.View;
+import com.budget.model.view.ViewEmployee;
 import com.budget.repository.EmployeeRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -16,7 +16,7 @@ import java.time.LocalDate;
 /**
  * @author MR.k0F31n
  */
-public class EmployeeController {
+public class EmployeeServiceController {
 
     private final EmployeeRepository repository = new EmployeeRepository();
 
@@ -124,7 +124,7 @@ public class EmployeeController {
         
         repository.addOrUpdateEmployee(newEmployee);
         DashboardEmployeeController.closeScene();
-        App.setRoot(View.DASHBOARD_EMPLOYEE.toPath());
+        App.setRoot(ViewEmployee.DASHBOARD_EMPLOYEE.toPath());
     }
 
     @FXML

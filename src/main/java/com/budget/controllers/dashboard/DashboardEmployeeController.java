@@ -1,9 +1,10 @@
 package com.budget.controllers.dashboard;
 
 import com.budget.App;
-import com.budget.controllers.service.EmployeeController;
+import com.budget.controllers.service.EmployeeServiceController;
 import com.budget.model.Employee;
-import com.budget.model.View;
+import com.budget.model.view.ViewEmployee;
+import com.budget.model.view.ViewMain;
 import com.budget.repository.EmployeeRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -72,7 +73,7 @@ public class DashboardEmployeeController {
         dateBirthdayColumn.setCellValueFactory(new PropertyValueFactory<>("birthDay"));
         tableBirthday.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         ObservableList<Employee> employees = FXCollections.observableArrayList();
-        employees.addAll(repository.getNextBirthday(String.valueOf(LocalDate.now().getMonthValue())));
+        employees.addAll(repository.getNextBirthday());
         tableBirthday.setItems(employees);
     }
 
@@ -117,12 +118,12 @@ public class DashboardEmployeeController {
         try {
             FXMLLoader loader;
             if (employee != null) {
-                loader = new FXMLLoader(getClass().getResource(View.UPDATE_EMPLOYEE.toPath()));
+                loader = new FXMLLoader(getClass().getResource(ViewEmployee.UPDATE_EMPLOYEE.toPath()));
             } else {
-                loader = new FXMLLoader(getClass().getResource(View.ADD_EMPLOYEE.toPath()));
+                loader = new FXMLLoader(getClass().getResource(ViewEmployee.ADD_EMPLOYEE.toPath()));
             }
             Parent root = loader.load();
-            EmployeeController controller = loader.getController();
+            EmployeeServiceController controller = loader.getController();
             if (employee != null) {
                 controller.init(employee);
             }
@@ -136,7 +137,7 @@ public class DashboardEmployeeController {
 
     @FXML
     private void returnToMainDashboard() throws IOException {
-        App.setRoot(View.DASHBOARD_MAIN.toPath());
+        App.setRoot(ViewMain.DASHBOARD_MAIN.toPath());
     }
 
     @FXML
