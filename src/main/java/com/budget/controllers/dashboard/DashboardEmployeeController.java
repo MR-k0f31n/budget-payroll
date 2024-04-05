@@ -73,7 +73,7 @@ public class DashboardEmployeeController {
         dateBirthdayColumn.setCellValueFactory(new PropertyValueFactory<>("birthDay"));
         tableBirthday.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         ObservableList<Employee> employees = FXCollections.observableArrayList();
-        employees.addAll(repository.getNextBirthday(String.valueOf(LocalDate.now().getMonthValue())));
+        employees.addAll(repository.getNextBirthday());
         tableBirthday.setItems(employees);
     }
 

@@ -1,12 +1,11 @@
 package com.budget.controllers.service;
 
-import com.budget.App;
 import com.budget.controllers.dashboard.DashboardExpensesController;
 import com.budget.model.Expenses;
 import com.budget.model.ExpensesItem;
-import com.budget.model.view.ViewExpense;
 import com.budget.repository.ExpensesRepository;
 import com.budget.util.ExpenseItemStringConverter;
+import com.budget.util.ExpensesObserver;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -15,6 +14,8 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author MR.k0F31n
@@ -49,6 +50,7 @@ public class ExpensesServiceController {
     private Label descriptionExpenseBeforeDeletion;
 
     private final ExpensesRepository expensesRepository = new ExpensesRepository();
+    private final List<ExpensesObserver> observers = new ArrayList<>();
 
     private Double sum;
     private String description;
@@ -57,6 +59,10 @@ public class ExpensesServiceController {
     private LocalDate incomeDate;
     private Long idExpense;
     private LocalDate date;
+
+    public void addObserver(ExpensesObserver observer) {
+        observers.add(observer);
+    }
 
     public void init(Expenses oldExpenses) {
         if (oldExpenses != null) {
@@ -91,7 +97,7 @@ public class ExpensesServiceController {
     }
 
     public void initDate() {
-        initDateExpenses(LocalDate.now());
+        initDateExpenses();
         initializingDropdownList();
     }
 
@@ -107,7 +113,7 @@ public class ExpensesServiceController {
         newExpense.setId(idExpense);
         try {
             expensesRepository.AddOrUpdateExpense(newExpense);
-            App.setRoot(ViewExpense.DASHBOARD_EXPENSES.toPath());
+            notifyObservers();
             DashboardExpensesController.closeScene();
         } catch (Exception e) {
             criticalMessageShow();
@@ -146,7 +152,7 @@ public class ExpensesServiceController {
     }
 
     @FXML
-    private void typedIncomeNumber(){
+    private void typedIncomeNumber() {
         incomeNumber = incomeNumberField.getText();
     }
 
@@ -207,8 +213,8 @@ public class ExpensesServiceController {
         expensesItem.setConverter(new ExpenseItemStringConverter());
     }
 
-    private void initDateExpenses(LocalDate date) {
-        expensesDate.setValue(date);
+    private void initDateExpenses() {
+        expensesDate.setValue(LocalDate.now());
     }
 
     @FXML
@@ -219,7 +225,7 @@ public class ExpensesServiceController {
     @FXML
     private void deleteButton() throws IOException {
         expensesRepository.deleteExpense(idExpense);
-        App.setRoot(ViewExpense.DASHBOARD_EXPENSES.toPath());
+        notifyObservers();
         DashboardExpensesController.closeScene();
     }
 
@@ -230,5 +236,11 @@ public class ExpensesServiceController {
         String formatSum = decimalFormat.format(sum);
         String setLabel = String.format("Расход от %s сумма %s описание: %s", formatDate, formatSum, description);
         descriptionExpenseBeforeDeletion.setText(setLabel);
+    }
+
+    private void notifyObservers() {
+        for (ExpensesObserver observer : observers) {
+            observer.updateExpensesTable();
+        }
     }
 }

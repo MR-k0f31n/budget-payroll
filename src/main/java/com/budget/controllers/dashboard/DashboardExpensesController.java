@@ -7,30 +7,26 @@ import com.budget.model.ExpensesItem;
 import com.budget.model.view.ViewExpense;
 import com.budget.model.view.ViewMain;
 import com.budget.repository.ExpensesRepository;
+import com.budget.util.ExpensesObserver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * @author MR.k0F31n
  */
-public class DashboardExpensesController {
+public class DashboardExpensesController implements ExpensesObserver {
     private static Stage stage;
-
-    private final ExpensesRepository expensesRepository = new ExpensesRepository();
+    private static final ExpensesRepository expensesRepository = new ExpensesRepository();
 
     @FXML
     private TableView<Expenses> tableExpenses;
@@ -54,11 +50,24 @@ public class DashboardExpensesController {
     private TextField filterOnDescription;
     @FXML
     private TextField filterOnSum;
-
+    @FXML
+    private Label errorDate;
+    @FXML
+    private Label errorSum;
 
     @FXML
     private void initialize() {
+        LocalDate currentDate = LocalDate.now();
+        if (filterDateStart.getValue() == null) {
+            LocalDate startDate = currentDate.withDayOfMonth(1);
+            filterDateStart.setValue(startDate);
+        }
+        if (filterDateEnd.getValue() == null) {
+            LocalDate endDate = currentDate.withDayOfMonth(currentDate.lengthOfMonth());
+            filterDateEnd.setValue(endDate);
+        }
         fillTable();
+        setTable();
     }
 
     private void fillTable() {
@@ -69,12 +78,36 @@ public class DashboardExpensesController {
         tableColumnIncomeNumber.setCellValueFactory(new PropertyValueFactory<>("incomeNumber"));
         tableColumnIncomeDate.setCellValueFactory(new PropertyValueFactory<>("incomeDate"));
         tableExpenses.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        setTable();
+
     }
 
-    private void setTable() {
+    public void setTable() {
         ObservableList<Expenses> expensesList = FXCollections.observableArrayList();
-        expensesList.addAll(expensesRepository.getAllExpenses());
+
+        String description = null;
+        if (!filterOnDescription.getText().isEmpty()) {
+            description = filterOnDescription.getText();
+        }
+
+        Double sum = null;
+        if (!filterOnSum.getText().isBlank()) {
+            try {
+                sum = Double.parseDouble(filterOnSum.getText());
+                errorSum.setVisible(false);
+            } catch (NumberFormatException e) {
+                sum = null;
+                errorSum.setVisible(true);
+            }
+        }
+
+        if (filterDateStart.getValue() != null && filterDateEnd.getValue() != null) {
+            expensesList.addAll(
+                    expensesRepository.getExpenseDataWithDifferentParameters(
+                            filterDateStart.getValue(),
+                            filterDateEnd.getValue(),
+                            description,
+                            sum));
+        }
         tableExpenses.setItems(expensesList);
     }
 
@@ -95,6 +128,7 @@ public class DashboardExpensesController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
             Parent root = loader.load();
             ExpensesServiceController controller = loader.getController();
+            controller.addObserver(this);
 
             if (path.equals(ViewExpense.ADD_OR_UPDATE_EXPENSES.toPath())) {
                 if (expenses != null) {
@@ -128,5 +162,30 @@ public class DashboardExpensesController {
 
     public static void closeScene() {
         stage.close();
+    }
+
+    @Override
+    public void updateExpensesTable() {
+        setTable();
+    }
+
+    @FXML
+    private void typedFilterDateStart() {
+        isDateAfter();
+    }
+
+    @FXML
+    private void typedFilterDateEnd() {
+        isDateAfter();
+    }
+
+
+    private void isDateAfter() {
+        errorDate.setVisible(filterDateStart.getValue().isAfter(filterDateEnd.getValue()));
+    }
+
+    @FXML
+    private void filterButtonAction() {
+        setTable();
     }
 }
